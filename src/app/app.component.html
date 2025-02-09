@@ -1,5 +1,22 @@
 <h1>Hola Mundo</h1>
 <p>Es mi primera app en html y angular</p>
+
+<p> El titulo es {{title | alrevesPipe | uppercase}}</p>
+<div>
+  {{nombre | uppercase}}
+</div>
+
+<p>La contraseña es: {{contrasena | ofuscar}}</p>
+
+<div>
+  {{nombre | lowercase}}
+</div>
+
+<p>fecha: {{today | date: 'dd/MM/yyyy'}}</p>
+<p>fecha: {{today | date: 'fullDate' | lowercase}}</p>
+<p>{{sueldo | currency: 'S/.'}}</p>
+<p>{{sueldo | percent}}</p>
+
 <img src="{{imagen}}" alt="imagen" width="100">
 <p><b>Hola {{nombre}}, como te va hoy?</b></p>
 

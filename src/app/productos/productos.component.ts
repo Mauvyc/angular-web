@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   templateUrl: './productos.component.html',
 })
 export class ProductosComponent {
-
+  productName: string = 'Apple Mackbook Pro';
 }
