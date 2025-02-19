@@ -1,7 +1,10 @@
-import { Component, OnInit, Pipe, PipeTransform } from '@angular/core';
+import { Component, inject, OnInit, Pipe, PipeTransform } from '@angular/core';
 import {CurrencyPipe, NgClass, NgFor, NgIf, PercentPipe} from '@angular/common';
 import {RouterLink} from '@angular/router';
 import { ProductoService } from '../services/producto.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ProductDialogComponent } from './product-dialog/product-dialog.component';
+import { MatButtonModule } from '@angular/material/button';
 
 // El export es para reutilizar codigo en otro componente, pero en este caso se fue al servicio
 export type Product = {
@@ -28,14 +31,15 @@ export class ShortTextPipe implements PipeTransform {
 @Component({
   selector: 'producto-card',
   imports: [NgFor, NgIf, CurrencyPipe, NgClass, PercentPipe,
-    ShortTextPipe, RouterLink],
+    ShortTextPipe, RouterLink, MatButtonModule],
   templateUrl: './productos.component.html',
   styleUrls: ['./productos.component.css'],
-  providers: [ProductoService],
+  // providers: [ProductoService],
 })
 
 export class ProductosComponent implements OnInit {
   productos?: Product[];
+  dialog = inject(MatDialog);
 
   constructor(
     private readonly productoService: ProductoService
@@ -43,6 +47,14 @@ export class ProductosComponent implements OnInit {
 
   ngOnInit() {
     this.productos = this.productoService.getProductos();
+  }
+
+  openDialog() {
+    this.dialog.open(ProductDialogComponent, {
+      data: {
+        animal: 'panda',
+      },
+    });
   }
 }
 

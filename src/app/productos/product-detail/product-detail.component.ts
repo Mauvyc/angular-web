@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProductoService } from '../../services/producto.service';
 import { Product } from '../productos.component';
+import { MatButton } from '@angular/material/button';
 
 @Component({
   selector: 'app-product-detail',
-  providers: [ProductoService],
+  //providers: [ProductoService],
+  imports: [MatButton],
   templateUrl: './product-detail.component.html',
   styleUrls: ['./product-detail.component.css']
 })
@@ -15,6 +17,7 @@ export class ProductDetailComponent implements OnInit {
 
   constructor(
     private readonly route: ActivatedRoute,
+    private readonly router: Router,
     private readonly productoService: ProductoService
   ) {}
 
@@ -25,4 +28,12 @@ export class ProductDetailComponent implements OnInit {
       console.log(this.product);
     });
   }
+
+
+
+  goBack(): void {
+    this.router.navigate(['/productos']);
+  }
+
+
 }
