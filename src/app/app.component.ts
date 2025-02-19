@@ -1,6 +1,7 @@
-import {Component, Pipe, PipeTransform} from '@angular/core';
-import {RouterLink, RouterOutlet} from '@angular/router';
+import { Component, OnInit, Pipe, PipeTransform } from '@angular/core';
+import { NavigationEnd, Router, RouterLink, RouterOutlet } from '@angular/router';
 import {ProductosComponent} from './productos/productos.component';
+import { MatTabsModule } from '@angular/material/tabs';
 
 
 
@@ -8,22 +9,45 @@ import {ProductosComponent} from './productos/productos.component';
   selector: 'app-root',
   standalone: true,
   imports: [
-    RouterOutlet, RouterLink
+    RouterOutlet, MatTabsModule
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  // title = 'Facebook';
-  // nombre: string = 'Mauricio';
-  // imagen = `https://robohash.org/${this.nombre}`;
-  // colores: string[] = ['rojo', 'verde', 'azul', 'amarillo'];
-  // haynotificacion: boolean = true;
-  // colorBackground: string = 'purple';
-  // userRole: string = 'admin';
-  // today: Date = new Date();
-  // sueldo: number = 1242.434;
-  // contrasena: string = 'Wasdwasdw123';
-  // products: string[] = ['papa', 'camote', 'uva', 'fresa', 'pera', 'mandarina'];
-  // price: number[] = [2, 4, 5, 61, 12, 30];
+export class AppComponent implements OnInit {
+  selectedTab: number = 0;
+
+  constructor(private router: Router) {
+  }
+
+  ngOnInit() {
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.updateSelectedTab(event.urlAfterRedirects);
+      }
+    });
+  }
+  navigateToTab(event: any) {
+    switch (event.index) {
+      case 0:
+        this.router.navigate(['/']);
+        break;
+      case 1:
+        this.router.navigate(['/about']);
+        break;
+      case 2:
+        this.router.navigate(['/productos']);
+        break;
+    }
+  }
+
+  private updateSelectedTab(url: string) {
+    if (url.includes('/')) {
+      this.selectedTab = 0;
+    } else if (url.includes('/about')) {
+      this.selectedTab = 1;
+    } else if (url.includes('/productos')) {
+      this.selectedTab = 2;
+    }
+  }
 }
