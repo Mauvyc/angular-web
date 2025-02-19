@@ -1,54 +1,29 @@
 import {Component, Pipe, PipeTransform} from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import {
-  CurrencyPipe,
-  DatePipe,
-  LowerCasePipe,
-  NgClass,
-  NgFor,
-  NgIf,
-  NgSwitch,
-  NgSwitchCase,
-  NgSwitchDefault, PercentPipe,
-  UpperCasePipe
-} from '@angular/common';
+import {RouterLink, RouterOutlet} from '@angular/router';
+import {ProductosComponent} from './productos/productos.component';
 
-@Pipe({
-  name: 'alrevesPipe',
-  standalone: true,
-})
-class MiPipe implements PipeTransform {
-  transform(value: string){
-    return value.split('').reverse().join('');
-  }
-}
 
-@Pipe({
-  name: 'ofuscar',
-  standalone: true,
-})
-class OfuscarPipe implements PipeTransform {
-  transform(value: string){
-    return `${value.substring(0,3)}***`
-  }
-}
 
 @Component({
   selector: 'app-root',
-  imports: [NgFor, NgIf, NgClass, NgSwitch, NgSwitchCase, NgSwitchDefault, UpperCasePipe, LowerCasePipe, DatePipe,
-    CurrencyPipe, MiPipe, OfuscarPipe, PercentPipe],
+  standalone: true,
+  imports: [
+    RouterOutlet, RouterLink
+  ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Facebook';
-  nombre: string = 'Mauricio';
-  imagen = `https://robohash.org/${this.nombre}`;
-  colores: string[] = ['rojo', 'verde', 'azul', 'amarillo'];
-  haynotificacion: boolean = true;
-  colorBackground: string = 'purple';
-  userRole: string = 'admin';
-  today: Date = new Date();
-  sueldo: number = 1242.434;
-  contrasena: string = 'Wasdwasdw123';
+  // title = 'Facebook';
+  // nombre: string = 'Mauricio';
+  // imagen = `https://robohash.org/${this.nombre}`;
+  // colores: string[] = ['rojo', 'verde', 'azul', 'amarillo'];
+  // haynotificacion: boolean = true;
+  // colorBackground: string = 'purple';
+  // userRole: string = 'admin';
+  // today: Date = new Date();
+  // sueldo: number = 1242.434;
+  // contrasena: string = 'Wasdwasdw123';
+  // products: string[] = ['papa', 'camote', 'uva', 'fresa', 'pera', 'mandarina'];
+  // price: number[] = [2, 4, 5, 61, 12, 30];
 }

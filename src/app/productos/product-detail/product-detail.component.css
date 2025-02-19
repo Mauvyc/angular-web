@@ -1,0 +1,20 @@
+div {
+  background-color: #f8f9fa; /* Color de fondo suave */
+  border: 2px solid #007bff; /* Borde azul */
+  border-radius: 10px; /* Bordes redondeados */
+  padding: 15px; /* Espaciado interno */
+  width: 300px; /* Ancho del contenedor */
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+h3 {
+  color: #007bff; /* Azul llamativo */
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 16px;
+  color: #333; /* Texto oscuro */
+  margin: 5px 0;
+}
